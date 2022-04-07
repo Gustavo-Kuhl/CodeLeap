@@ -19,6 +19,7 @@ const Container = styled.div`
 `;
 
 const Form = styled.form`
+  margin: 1rem;
   border-radius: 1rem;
   width: 700px;
   background-color: #fff;
@@ -27,12 +28,18 @@ const Form = styled.form`
   justify-content: space-evenly;
   padding: 1rem;
   gap: 1rem;
-  animation: animate .5s;
+  animation: animate 0.5s;
 
   @keyframes animate {
-    0%{transform: translateY(-100%)}
-    50%{transform: translateY(30%)}
-    100%{transform: translateY(0)}
+    0% {
+      transform: translateY(-100%);
+    }
+    50% {
+      transform: translateY(30%);
+    }
+    100% {
+      transform: translateY(0);
+    }
   }
 
   .input-box {
@@ -45,14 +52,19 @@ const Form = styled.form`
 const Input = styled.input`
   padding: 0.5rem;
   border-radius: 0.3rem;
-  border: 1px solid #777;
+  background-color: #f0f0f0;
+  border: unset;
+  outline: unset;
+  font-size: 1.2rem;
 `;
 
 const TextArea = styled.textarea`
+  font-size: 1.2rem;
   padding: 0.5rem;
   outline: unset;
   height: 100px;
-  border: 1px solid #777;
+  background-color: #f0f0f0;
+  border: unset;
   resize: none;
   border-radius: 0.3rem;
 `;
@@ -66,7 +78,7 @@ const CancelButton = styled.button`
   font-weight: bold;
   border: unset;
   margin-right: 1rem;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
 `;
 
 export const EditModal = () => {

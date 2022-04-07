@@ -27,7 +27,8 @@ const TextArea = styled.textarea`
   outline: unset;
   width: 100%;
   height: 150px;
-  border: 1px solid #777;
+  background-color: #f0f0f0;
+  border: unset;
   resize: none;
   font-size: 1.1rem;
 `;
