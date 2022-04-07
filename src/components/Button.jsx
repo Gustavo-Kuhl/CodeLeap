@@ -8,6 +8,7 @@ const Btn = styled.button`
   color: ${(props) => (props.emptyField ? "#000" : "#fff")};
   font-weight: bold;
   border: unset;
+  border-radius: .5rem;
 `;
 
 export const ButtonBox = styled.div`

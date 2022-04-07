@@ -24,8 +24,12 @@ const Container = styled.main`
 
 const Feed = styled.section`
   margin: 3rem 0;
-  padding: 0 10vw;
+  padding: 0 15vw;
   width: 100%;
+
+  @media (max-width: 500px) {
+    padding: 2rem 10vw 20vh;
+  }
 `;
 
 export const Home = () => {
@@ -46,14 +50,15 @@ export const Home = () => {
   }, []);
 
   const fetchPosts = async () => {
-    const data = await fetch("https://dev.codeleap.co.uk/careers/").then(
+    const data = await fetch("http://localhost:5000/getPosts").then(
       (res) => res.json()
     );
     setDeletedPost(false);
     setCreatedPost(false);
     setEditedPost(false);
     setLoad(false);
-    setPosts(data.results);
+    const reversedPost = data.posts.reverse()
+    setPosts(reversedPost);
   };
 
   useEffect(() => {
@@ -78,8 +83,8 @@ export const Home = () => {
               {posts.map((post) => {
                 return (
                   <Post
-                    key={post.id}
-                    id={post.id}
+                    key={post._id}
+                    id={post._id}
                     title={post.title}
                     username={post.username}
                     content={post.content}

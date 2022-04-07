@@ -15,7 +15,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
-  `;
+`;
 
 const ModalBox = styled.div`
   padding: 1rem;
@@ -25,8 +25,16 @@ const ModalBox = styled.div`
   display: flex;
   justify-content: space-around;
   flex-direction: column;
-  border-radius: 0.3rem;
   margin: 1rem;
+  border-radius: 1rem;
+
+  animation: animate .5s;
+
+  @keyframes animate {
+    0%{transform: translateY(-100%)}
+    50%{transform: translateY(30%)}
+    100%{transform: translateY(0)}
+  }
 
   h2 {
     font-weight: normal;
@@ -67,7 +75,7 @@ export const DeleteModal = () => {
   function handleOKButton() {
     setOpenDeleteModal(false);
 
-    fetch(`https://dev.codeleap.co.uk/careers/${postID}/`, {
+    fetch(`http://localhost:5000/deletePost/${postID}/`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

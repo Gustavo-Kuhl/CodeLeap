@@ -5,8 +5,6 @@ import { EditModalContext } from "../context/OpenEditModal";
 import { PostIdContext } from "../context/PostID";
 import { EditedPostContext } from "../context/EditedPost";
 
-import useLocalStorage from "../hooks/useLocalStorage";
-
 import { ButtonBox, Button } from "./Button";
 
 const Container = styled.div`
@@ -21,6 +19,7 @@ const Container = styled.div`
 `;
 
 const Form = styled.form`
+  border-radius: 1rem;
   width: 700px;
   background-color: #fff;
   display: flex;
@@ -28,6 +27,13 @@ const Form = styled.form`
   justify-content: space-evenly;
   padding: 1rem;
   gap: 1rem;
+  animation: animate .5s;
+
+  @keyframes animate {
+    0%{transform: translateY(-100%)}
+    50%{transform: translateY(30%)}
+    100%{transform: translateY(0)}
+  }
 
   .input-box {
     display: flex;
@@ -60,14 +66,13 @@ const CancelButton = styled.button`
   font-weight: bold;
   border: unset;
   margin-right: 1rem;
+  border-radius: .5rem;
 `;
 
 export const EditModal = () => {
   const [emptyFields, setEmptyFields] = useState(true);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-
-  const [username] = useLocalStorage("username");
 
   const { setEditedPost } = useContext(EditedPostContext);
   const { postID } = useContext(PostIdContext);
@@ -94,9 +99,10 @@ export const EditModal = () => {
   }
 
   function editPost() {
-    fetch(`https://dev.codeleap.co.uk/careers/${postID}/`, {
+    console.log(postID);
+    fetch(`http://localhost:5000/editPost/${postID}/`, {
       method: "PATCH",
-      body: JSON.stringify({ username, title, content }),
+      body: JSON.stringify({ title, content }),
       headers: { "Content-Type": "application/json" },
     })
       .then(() => {

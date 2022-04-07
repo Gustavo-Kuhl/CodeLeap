@@ -13,8 +13,8 @@ import useLocalStorage from "../hooks/useLocalStorage";
 const Container = styled.div`
   display: flex;
   flex-flow: column nowrap;
-  background-color: #ffffff;
-  border-radius: 0.2rem;
+  box-shadow: 0 0 10px #ccc;
+  border-radius: 1rem;
   border: 1px solid #ccc;
   margin: 3rem 0;
 `;
@@ -25,6 +25,8 @@ const PostHeader = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 1rem;
+  border-radius: 1rem;
+  margin: .5rem;
   background-color: #000;
   color: #fff;
 
@@ -34,7 +36,7 @@ const PostHeader = styled.div`
 `;
 
 const PostContent = styled.div`
-  padding: 2rem;
+  padding: 1.5rem;
   text-align: left;
 
   .content {
@@ -57,8 +59,8 @@ const Profile = styled.div`
 `;
 
 const Image = styled.img`
-  padding: 0.5rem;
-  margin: 0.5rem;
+  padding: 0 1rem;
+  margin: 0 .5rem;
   cursor: pointer;
 `;
 
@@ -69,13 +71,13 @@ export const Post = ({ id, title, content, username, datetime }) => {
   const [localName] = useLocalStorage("username", "");
 
   const deletePost = () => {
-    setOpenDeleteModal(true);
     setPostID(id);
+    setOpenDeleteModal(true);
   };
 
   const editPost = () => {
-    setOpenEditModal(true);
     setPostID(id);
+    setOpenEditModal(true);
   };
 
   function formatDate(date) {
@@ -85,7 +87,7 @@ export const Post = ({ id, title, content, username, datetime }) => {
   }
 
   return (
-    <Container id={id}>
+    <Container>
       <PostHeader>
         <h2>{title}</h2>
         <div>

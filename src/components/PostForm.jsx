@@ -23,12 +23,13 @@ const InputBox = styled.div`
 
 const TextArea = styled.textarea`
   padding: 0.5rem;
-  border-radius: 0.3rem;
+  border-radius: 0.5rem;
   outline: unset;
   width: 100%;
   height: 150px;
   border: 1px solid #777;
   resize: none;
+  font-size: 1.1rem;
 `;
 
 export const PostForm = ({ textH3, setCreatedPost }) => {
@@ -53,14 +54,14 @@ export const PostForm = ({ textH3, setCreatedPost }) => {
     }
   };
 
-  const handleClick = () => {
+  const handleSubmit = () => {
     const data = {
       username,
       title,
       content,
     };
 
-    fetch("http://localhost:5000/createPost", {
+    fetch(`http://localhost:5000/createPost`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -71,27 +72,12 @@ export const PostForm = ({ textH3, setCreatedPost }) => {
       .catch((err) => console.log(err));
   };
 
-  const handleSubmit = () => {
-    const data = {
-      username, title, content,
-    }
-
-    fetch("https://dev.codeleap.co.uk/careers/", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      }
-    }).then(() => setCreatedPost(true))
-    .catch(err => console.log(err))
-  }
-
   useEffect(() => {
     verifyEmptyFields();
   }, [title, content]);
 
   return (
-    <Form>
+    <Form type="post">
       <InputBox>
         <h3 className="title">{textH3}</h3>
         <label htmlFor="title-input">Title</label>
@@ -108,7 +94,11 @@ export const PostForm = ({ textH3, setCreatedPost }) => {
           placeholder="Content here"
         ></TextArea>
         <ButtonBox>
-          <Button text="CREATE" onClick={handleSubmit} emptyField={emptyFields} />
+          <Button
+            text="CREATE"
+            onClick={handleSubmit}
+            emptyField={emptyFields}
+          />
         </ButtonBox>
       </InputBox>
     </Form>

@@ -10,3 +10,15 @@ body,
   height: 100%;
   font-family: "Roboto", "Poppins", sans-serif;
 }
+
+body::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: #ccc;        /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #000;
+}
