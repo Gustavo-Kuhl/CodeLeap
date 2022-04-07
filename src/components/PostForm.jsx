@@ -53,14 +53,14 @@ export const PostForm = ({ textH3, setCreatedPost }) => {
     }
   };
 
-  const handleClick = () => {
+  const handleSubmit = () => {
     const data = {
       username,
       title,
       content,
     };
 
-    fetch("http://localhost:5000/createPost", {
+    fetch("https://dev.codeleap.co.uk/careers/", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -70,21 +70,6 @@ export const PostForm = ({ textH3, setCreatedPost }) => {
       .then(() => setCreatedPost(true))
       .catch((err) => console.log(err));
   };
-
-  const handleSubmit = () => {
-    const data = {
-      username, title, content,
-    }
-
-    fetch("https://dev.codeleap.co.uk/careers/", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      }
-    }).then(() => setCreatedPost(true))
-    .catch(err => console.log(err))
-  }
 
   useEffect(() => {
     verifyEmptyFields();
@@ -108,7 +93,11 @@ export const PostForm = ({ textH3, setCreatedPost }) => {
           placeholder="Content here"
         ></TextArea>
         <ButtonBox>
-          <Button text="CREATE" onClick={handleSubmit} emptyField={emptyFields} />
+          <Button
+            text="CREATE"
+            onClick={handleSubmit}
+            emptyField={emptyFields}
+          />
         </ButtonBox>
       </InputBox>
     </Form>
